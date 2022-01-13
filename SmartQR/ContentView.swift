@@ -7,10 +7,19 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        TabView{
+            GeneratorQR().tabItem {
+                Image(systemName: "qrcode")
+                Text("Создание")
+            }
+            ScannerQR().tabItem {
+                Image(systemName: "qrcode.viewfinder")
+                Text("Сканирование")
+            }
+        }
     }
 }
 

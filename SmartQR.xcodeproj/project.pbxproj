@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A5362B0627907467007531B2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A5362B0527907467007531B2 /* CodeScanner */; };
 		A5D94B8C278F10F900E94026 /* SmartQRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D94B8B278F10F900E94026 /* SmartQRApp.swift */; };
 		A5D94B8E278F10F900E94026 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D94B8D278F10F900E94026 /* ContentView.swift */; };
 		A5D94B90278F10FB00E94026 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D94B8F278F10FB00E94026 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A5362B0327907408007531B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A5D94B88278F10F900E94026 /* SmartQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D94B8B278F10F900E94026 /* SmartQRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartQRApp.swift; sourceTree = "<group>"; };
 		A5D94B8D278F10F900E94026 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5362B0627907467007531B2 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +58,7 @@
 		A5D94B8A278F10F900E94026 /* SmartQR */ = {
 			isa = PBXGroup;
 			children = (
+				A5362B0327907408007531B2 /* Info.plist */,
 				A5D94B8B278F10F900E94026 /* SmartQRApp.swift */,
 				A5D94B8D278F10F900E94026 /* ContentView.swift */,
 				A5D94B99278F115C00E94026 /* GeneratorQR.swift */,
@@ -89,6 +93,9 @@
 			dependencies = (
 			);
 			name = SmartQR;
+			packageProductDependencies = (
+				A5362B0527907467007531B2 /* CodeScanner */,
+			);
 			productName = SmartQR;
 			productReference = A5D94B88278F10F900E94026 /* SmartQR.app */;
 			productType = "com.apple.product-type.application";
@@ -117,6 +124,9 @@
 				Base,
 			);
 			mainGroup = A5D94B7F278F10F900E94026;
+			packageReferences = (
+				A5362B0427907467007531B2 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			productRefGroup = A5D94B89278F10F900E94026 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -280,11 +290,14 @@
 				DEVELOPMENT_TEAM = Z9WSPRMW9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartQR/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to camera to scan QR codes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,11 +322,14 @@
 				DEVELOPMENT_TEAM = Z9WSPRMW9Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SmartQR/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need to camera to scan QR codes";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -349,6 +365,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A5362B0427907467007531B2 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A5362B0527907467007531B2 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A5362B0427907467007531B2 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A5D94B80278F10F900E94026 /* Project object */;
 }
