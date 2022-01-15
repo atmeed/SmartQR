@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A5362B0627907467007531B2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A5362B0527907467007531B2 /* CodeScanner */; };
+		A5CF8CA62792AC4C003C04E4 /* GeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8CA52792AC4C003C04E4 /* GeneratorView.swift */; };
 		A5D94B8C278F10F900E94026 /* SmartQRApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D94B8B278F10F900E94026 /* SmartQRApp.swift */; };
 		A5D94B8E278F10F900E94026 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D94B8D278F10F900E94026 /* ContentView.swift */; };
 		A5D94B90278F10FB00E94026 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5D94B8F278F10FB00E94026 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		A5362B0327907408007531B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A5CF8CA52792AC4C003C04E4 /* GeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorView.swift; sourceTree = "<group>"; };
 		A5D94B88278F10F900E94026 /* SmartQR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmartQR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D94B8B278F10F900E94026 /* SmartQRApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartQRApp.swift; sourceTree = "<group>"; };
 		A5D94B8D278F10F900E94026 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				A5D94B8B278F10F900E94026 /* SmartQRApp.swift */,
 				A5D94B8D278F10F900E94026 /* ContentView.swift */,
 				A5D94B99278F115C00E94026 /* GeneratorQR.swift */,
+				A5CF8CA52792AC4C003C04E4 /* GeneratorView.swift */,
 				A5D94B9B278F11A100E94026 /* ScannerQR.swift */,
 				A5D94B8F278F10FB00E94026 /* Assets.xcassets */,
 				A5D94B91278F10FB00E94026 /* Preview Content */,
@@ -157,6 +160,7 @@
 				A5D94B9A278F115C00E94026 /* GeneratorQR.swift in Sources */,
 				A5D94B8C278F10F900E94026 /* SmartQRApp.swift in Sources */,
 				A5D94B9C278F11A100E94026 /* ScannerQR.swift in Sources */,
+				A5CF8CA62792AC4C003C04E4 /* GeneratorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

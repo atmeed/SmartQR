@@ -11,7 +11,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView{
-            GeneratorQR().tabItem {
+            GeneratorView().tabItem {
                 Image(systemName: "qrcode")
                 Text("Создание")
             }
