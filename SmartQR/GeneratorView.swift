@@ -8,14 +8,58 @@
 import SwiftUI
 
 
+//Строчки в Истории
+struct HistoryRow: View {
+    
+    var QR: StringToQR
+    
+    var body: some View {
+        HStack {
+            Image(uiImage: QR.image)
+            Text(QR.name)
+            
+        }
+    }
+}
+
+//Просмотр старого QR
+struct HistoryView: View {
+    var QR: StringToQR
+    
+    var body: some View {
+        VStack {
+            Image(uiImage: QR.image)
+        }
+    }
+}
 
 
 struct GeneratorView: View {
     
-    var qr = StringToQR(name: "Default")
+    var historyQR = ["Test", "Text", "Free"]
     
     var body: some View {
-        Image(uiImage: qr.image)
+        NavigationView {
+            VStack {
+                
+                
+                //История создания
+                Form {
+                    Section(header: Text("История")) {
+                        List {
+                            ForEach(historyQR, id: \.self) { qr in
+                                NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
+                                    HistoryRow(QR: StringToQR(name: qr))
+                                }
+                                    
+                            }
+                        }
+                    }
+                }
+            }.navigationTitle("Создание QR")
+            
+        }
+        
     }
 }
 

@@ -32,7 +32,7 @@ protocol QR {
 
 
 
-    
+//Получение QR из Текста
 class StringToQR: QR {
     
     //Общие характеристики QR кода
