@@ -9,7 +9,7 @@ import SwiftUI
 import CodeScanner
 
 struct ScannerQR: View {
-    @State var isPresentingScanner = false
+       @State var isPresentingScanner = false
        @State var scannedCode: String = "Scan QR code to get started"
        
        var scannedSheet: some View {
@@ -20,11 +20,8 @@ struct ScannerQR: View {
                        self.scannedCode = code.string
                        self.isPresentingScanner = false
                    }
-                   
                }
            )
-               
-           
        }
        
        
@@ -51,7 +48,7 @@ struct ScannerQR: View {
                            .font(.system(size: 22))
                            .padding()
                            .padding(.horizontal, 27)
-                           .background(Color.green)
+                           .background(Color.gray)
                            .clipShape(RoundedRectangle(cornerRadius: 15 ))
                            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 3))
                            

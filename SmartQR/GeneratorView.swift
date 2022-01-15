@@ -12,9 +12,10 @@ import SwiftUI
 
 struct GeneratorView: View {
     
+    var qr = StringToQR(name: "Default")
     
     var body: some View {
-        Text("Hell")
+        Image(uiImage: qr.image)
     }
 }
 

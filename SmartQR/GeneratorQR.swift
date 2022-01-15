@@ -12,39 +12,59 @@ import CoreImage.CIFilterBuiltins
 
 
 
+protocol QR {
     
-struct QR {
+    //Общие характеристики QR кода
+    var name: String { get set }
+    var image: UIImage { get }
     
-    //Имя QR кода
-    private var text: String
+    //Первичный инициализатор
+    init(name: String)
     
+    //Генератор QR кодов
+    func generateQR() -> UIImage
+    
+    
+    
+}
+
+
+
+
+
+    
+class StringToQR: QR {
+    
+    //Общие характеристики QR кода
+    var name: String
+    var image: UIImage {
+        get {
+            generateQR()
+        }
+    }
+    
+    //Первичный инициализатор
+    required init(name: String) {
+        self.name = name
+    }
+
     
     //Генератор QR кодов
     private let context = CIContext()
     private let filter = CIFilter.qrCodeGenerator()
-        
-    private func generateQR(from string: String) -> UIImage {
-        filter.message = Data(string.utf8)
-            
+
+    internal func generateQR() -> UIImage {
+        filter.message = Data(name.utf8)
+
         if let outputImage = filter.outputImage {
             if let cgimg = context.createCGImage(outputImage, from: outputImage.extent) {
                 return UIImage(cgImage: cgimg)
             }
-                    
+
         }
         return UIImage(systemName: "xmark.circle") ?? UIImage()
     }
-    
-    //Создание QR кода в UI
-    public func getImage() -> UIImage {
-        return generateQR(from: text)
-    }
-    
-    
-    //Инициализатор
-    init(name: String) {
-        self.text = name
-    }
+
        
 }
 
