@@ -35,6 +35,7 @@ struct LastQR: View {
     
     @State private var isShowingSharingSheet = false
     
+    
     var body: some View {
         
         VStack {
@@ -78,7 +79,9 @@ struct LastQR: View {
 //BODY
 struct GeneratorView: View {
     
-    @State private var historyQR = ["Test", "Text", "Free", "Pe"]
+    @ObservedObject var history = History()
+    
+    
     
     
     
@@ -90,21 +93,27 @@ struct GeneratorView: View {
                 Form {
                     
                     
-                    if historyQR.count > 0 { //Удаление истории приводит к удалению всего View
+                    if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
                         //Последний QR
                         VStack {
-                            LastQR(QR: StringToQR(name: historyQR[0]))
+                            LastQR(QR: StringToQR(name: history.historyQR[0]))
                         }
                         
                         
                         //История создания QR
                         Section(header: Text("История")) {
-                            History.HistoryList(historyQR: historyQR)
+                            List {
+                                ForEach(history.historyQR, id: \.self) { qr in
+                                    NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
+                                        HistoryRow(QR: StringToQR(name: qr))
+                                    }
+                                }
+                            }
                             
                             //Удаление всей истории QR
                             HStack{
                                 Button("Удалить всю истроию") {
-                                    self.historyQR = []
+                                    history.historyQR = []
                                 }
                                 .foregroundColor(.red)
                                 
