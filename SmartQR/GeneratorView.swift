@@ -8,19 +8,7 @@
 import SwiftUI
 
 
-//Строчки в Истории
-struct HistoryRow: View {
-    
-    var QR: QR
-    
-    var body: some View {
-        HStack {
-            Image(uiImage: QR.image)
-            Text(QR.name)
-            
-        }
-    }
-}
+
 
 //Поделитсья
 struct ShareSheet: UIViewControllerRepresentable {
@@ -39,37 +27,50 @@ struct ShareSheet: UIViewControllerRepresentable {
     }
 }
 
-//Просмотр старого QR
-struct HistoryView: View {
+
+
+struct LastQR: View {
+
     let QR: QR
     
     @State private var isShowingSharingSheet = false
     
-    
     var body: some View {
+        
         VStack {
-            Form {
-                HStack {
-                    Spacer()
-                    Text("\(QR.name)").font(.headline)
-                    Spacer()
-                }
-                Image(uiImage: QR.image)
-                    .interpolation(.none)
-                    .resizable()
-                    .scaledToFit()
-                HStack {
-                    Spacer()
-                    Button("Поделиться") {
-                        self.isShowingSharingSheet = true
-                    }.sheet(isPresented: $isShowingSharingSheet, content: {
-                        ShareSheet(activityItems: [QR.image], applicationActivities: nil)
-                    })
-                    Spacer()
-                }
+            
+            //Имя QR
+            HStack {
+                Spacer()
+                Text("\(QR.name)")
+    
+                Spacer()
+            }.padding(.top, 10)
+                
+            
+            //Изображение самого QR
+            Image(uiImage: QR.image)
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+            
+            
+            //Кнопка поделиться
+            HStack {
+                Spacer()
+                Button("Поделиться") {
+                    self.isShowingSharingSheet = true
+                }.sheet(isPresented: $isShowingSharingSheet, content: {
+                    ShareSheet(activityItems: [QR.image], applicationActivities: nil)
+                })
+                    .padding(.bottom, 10)
+                Spacer()
+            
+                
             }
         }
     }
+    
 }
 
 
@@ -80,36 +81,25 @@ struct GeneratorView: View {
     @State private var historyQR = ["Test", "Text", "Free", "Pe"]
     
     
+    
     var body: some View {
         NavigationView {
             VStack {
-                //Последний QR
                 
                 
-                
-                
-                
-                
-                
-                
-                //Создание нового QR
-                
-                
-                
-                
-                
-                
-                //История создания
                 Form {
+                    
+                    
                     if historyQR.count > 0 { //Удаление истории приводит к удалению всего View
+                        //Последний QR
+                        VStack {
+                            LastQR(QR: StringToQR(name: historyQR[0]))
+                        }
+                        
+                        
+                        //История создания QR
                         Section(header: Text("История")) {
-                            List {
-                                ForEach(historyQR, id: \.self) { qr in
-                                    NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
-                                        HistoryRow(QR: StringToQR(name: qr))
-                                    }
-                                }
-                            }
+                            History.HistoryList(historyQR: historyQR)
                             
                             //Удаление всей истории QR
                             HStack{
@@ -124,7 +114,7 @@ struct GeneratorView: View {
                     }
                     
                 }
-            }.navigationTitle("Создание QR")
+            }.navigationTitle("Последний QR")
             
         }
         
