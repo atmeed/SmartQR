@@ -22,8 +22,6 @@ struct GeneratorView: View {
     var body: some View {
         NavigationView {
             VStack {
-                
-                
                 Form {
                     //Последний QR
                     if history.historyQR.count > 0 {

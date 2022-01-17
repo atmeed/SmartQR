@@ -16,13 +16,7 @@ class History: ObservableObject { //Используется как в Гене�
     init(history: [String]) {
         self.historyQR = history
     }
-    
-    //Очистка истории
-    func clearHistory() {
-        historyQR.removeAll()
-    }
-    
-    
+
     
 }
 
@@ -40,68 +34,8 @@ struct HistoryRow: View {
     }
 }
 
-//Просмотр старого QR
-struct HistoryView: View {
-    
-    let QR: QR
-    
-    
-    
-    @State private var isShowingSharingSheet = false
-    
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Form {
-                    Section() { //Имя QR
-                        
-                        
-                        //Изображение самого QR
-                        Image(uiImage: QR.image)
-                            .interpolation(.none)
-                            .resizable()
-                            .scaledToFit()
-                        
-                        //Кнопка поделиться
-                        HStack {
-                            Spacer()
-                            Button("Поделиться") {
-                                self.isShowingSharingSheet = true
-                            }.sheet(isPresented: $isShowingSharingSheet, content: {
-                                ShareSheet(activityItems: [QR.image], applicationActivities: nil)
-                            })
-                                .padding(.bottom, 10)
-                                .padding(.top, 10)
-                            Spacer()
-                        }
-                    }
-                    
-                    
-                    
-                }.navigationBarTitle("\(QR.name)")
-            }
-        }
-        
-    }
-}
 
-//Поделитсья
-struct ShareSheet: UIViewControllerRepresentable {
 
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]?
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems,
-                                        applicationActivities: applicationActivities)
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController,
-                                context: UIViewControllerRepresentableContext<ShareSheet>) {
-
-    }
-}
 
 
 //Последний QR в GeneratorView
