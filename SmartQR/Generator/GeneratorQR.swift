@@ -36,7 +36,7 @@ protocol QR {
 class StringToQR: QR {
     
     //Общие характеристики QR кода
-    var name: String
+    var name: String = "Default"
     var image: UIImage {
         get {
             generateQR()

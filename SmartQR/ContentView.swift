@@ -15,7 +15,7 @@ struct ContentView: View {
                 Image(systemName: "qrcode")
                 Text("Создание")
             }
-            ScannerQR().tabItem {
+            ScannerView().tabItem {
                 Image(systemName: "qrcode.viewfinder")
                 Text("Сканирование")
             }

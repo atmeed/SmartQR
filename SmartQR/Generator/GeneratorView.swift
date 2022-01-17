@@ -79,7 +79,7 @@ struct LastQR: View {
 //BODY
 struct GeneratorView: View {
     
-    @ObservedObject var history = History()
+    @ObservedObject var history = History(history: ["1", "2", "3"])
     
     
     
@@ -91,16 +91,30 @@ struct GeneratorView: View {
                 
                 
                 Form {
-                    
-                    
-                    if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
-                        //Последний QR
+                    //Последний QR
+                    if history.historyQR.count > 0 {
+                        
                         VStack {
                             LastQR(QR: StringToQR(name: history.historyQR[0]))
+                        }.navigationBarTitle("Последний QR")
+                    } else {
+                        Section {
+                            //Пример
+                            Image(systemName: "qrcode")
+                                .resizable()
+                                .scaledToFit()
+                                .navigationBarTitle("Создание QR")
+                                .padding()
                         }
                         
-                        
-                        //История создания QR
+                    //Добавление QR
+     
+                            
+                    }
+                    
+                    
+                    //История создания QR
+                    if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
                         Section(header: Text("История")) {
                             List {
                                 ForEach(history.historyQR, id: \.self) { qr in
@@ -114,6 +128,7 @@ struct GeneratorView: View {
                             HStack{
                                 Button("Удалить всю истроию") {
                                     history.historyQR = []
+                                    
                                 }
                                 .foregroundColor(.red)
                                 
@@ -123,7 +138,7 @@ struct GeneratorView: View {
                     }
                     
                 }
-            }.navigationTitle("Последний QR")
+            }.navigationTitle("Создание QR")
             
         }
         

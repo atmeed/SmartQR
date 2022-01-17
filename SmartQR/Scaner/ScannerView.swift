@@ -8,10 +8,17 @@
 import SwiftUI
 import CodeScanner
 
-struct ScannerQR: View {
+struct ScannerView: View {
+    
+       //Сканер
        @State var isPresentingScanner = false
        @State var scannedCode: String = "Scan QR code to get started"
+    
+        //История
+        @ObservedObject var history = History(history: ["1", "2"])
        
+    
+       //Сам сканер
        var scannedSheet: some View {
            CodeScannerView (
                codeTypes: [.qr],
@@ -23,9 +30,10 @@ struct ScannerQR: View {
                }
            )
        }
+    
        
        
-       
+       //BODY
        var body: some View {
            NavigationView {
                
@@ -36,7 +44,9 @@ struct ScannerQR: View {
                    }.padding(.vertical, 130)
                    Spacer()
                    
-                   //Нижний бар с кнопками
+                   
+                   
+                   //Бар с кнопками
                    VStack {
                        HStack(spacing: 13) {
                            
@@ -44,16 +54,6 @@ struct ScannerQR: View {
                            Button("Scan QR") {
                                self.isPresentingScanner = true
                            }
-                           .foregroundColor(.white)
-                           .font(.system(size: 22))
-                           .padding()
-                           .padding(.horizontal, 27)
-                           .background(Color.gray)
-                           .clipShape(RoundedRectangle(cornerRadius: 15 ))
-                           .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 3))
-                           
-                           
-                           
                            .sheet(isPresented: $isPresentingScanner) {
                                self.scannedSheet
                                }
@@ -63,25 +63,39 @@ struct ScannerQR: View {
                            Button("Select a photo") {
                                
                            }
-                           .font(.system(size: 22))
-                           .foregroundColor(.white)
-                           .padding()
-                           .background(Color.green)
-                           .clipShape(RoundedRectangle(cornerRadius: 15 ))
-                           .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 3))
-                           
+
                        }
-                       
-                       //Кнопка с пояснениями как и что работает
-                       Button(action: {
-                           
-                       }) {
-                           Image(systemName: "questionmark.circle")
-                       }
-                       .foregroundColor(.gray)
-                       .padding(.bottom, 10)
-                       .padding(.top, 5)
+
                    }
+                   
+                   //История сканирования QR
+                   if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
+                       Section(header: Text("История")) {
+                           List {
+                               ForEach(history.historyQR, id: \.self) { qr in
+                                   NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
+                                       HistoryRow(QR: StringToQR(name: qr))
+                                   }
+                               }
+                           }
+                           
+                           //Удаление всей истории QR
+                           HStack{
+                               Button("Удалить всю истроию") {
+                                   history.historyQR = []
+                                   
+                               }
+                               .foregroundColor(.red)
+                               
+                                   
+                           }
+                       }
+                   }
+                   
+                   
+                   
+                   
+                   
                }.navigationBarTitle("Сканер QR кодов")
                
            }
@@ -90,6 +104,6 @@ struct ScannerQR: View {
 
 struct ScannerQR_Previews: PreviewProvider {
     static var previews: some View {
-        ScannerQR()
+        ScannerView()
     }
 }

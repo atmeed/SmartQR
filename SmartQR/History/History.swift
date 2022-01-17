@@ -1,23 +1,27 @@
 //
-//  HistoryGeneratedQR.swift
+//  History.swift
 //  SmartQR
 //
-//  Created by Leonid Zemtsov on 16.01.2022.
+//  Created by Leonid Zemtsov on 17.01.2022.
 //
 
 import Foundation
 import SwiftUI
 
-
 //Класс с данными
-class History: ObservableObject {
-
-    @Published var historyQR: [String] = ["1", "2", "3"]
+class History: ObservableObject { //Используется как в Генерации, так и в сканировании
     
+    var historyQR: [String] = []
+    
+    init(history: [String]) {
+        self.historyQR = history
+    }
 
+    
+    
+    
 }
-    
-    
+
 //Строчки в Истории
 struct HistoryRow: View {
 
@@ -31,16 +35,15 @@ struct HistoryRow: View {
         }
     }
 }
-    
-        
-        
+
 //Просмотр старого QR
 struct HistoryView: View {
+    
     let QR: QR
     
     
+    
     @State private var isShowingSharingSheet = false
-    @Environment(\.presentationMode) var presentationMode
     
     
     var body: some View {
@@ -69,32 +72,12 @@ struct HistoryView: View {
                             Spacer()
                         }
                     }
-                    Section {
-                        HStack {
-                            Spacer()
-                            Button("Удалить") {
-                                //Закрытие View
-                                presentationMode.wrappedValue.dismiss()
-                                
-                                
-                                //Удаление значения
-                                
-                            }.foregroundColor(.red)
-                                .allowsHitTesting(false)
-                            Spacer()
-                        }
-                    }
                     
                     
-                }
-            }.navigationBarTitle("\(QR.name)")
+                    
+                }.navigationBarTitle("\(QR.name)")
+            }
         }
         
     }
 }
-
-
-
-
-
-
