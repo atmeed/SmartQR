@@ -88,9 +88,9 @@
 			isa = PBXGroup;
 			children = (
 				A5362B0327907408007531B2 /* Info.plist */,
-				A589DBD1279563B300A69743 /* History */,
 				A5D94B8B278F10F900E94026 /* SmartQRApp.swift */,
 				A5D94B8D278F10F900E94026 /* ContentView.swift */,
+				A589DBD1279563B300A69743 /* History */,
 				A589DBD027955F3C00A69743 /* Scaner */,
 				A589DBCF27955F2700A69743 /* Generator */,
 				A5D94B8F278F10FB00E94026 /* Assets.xcassets */,

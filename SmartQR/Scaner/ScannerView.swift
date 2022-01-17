@@ -8,15 +8,21 @@
 import SwiftUI
 import CodeScanner
 
+
+
+
+
 struct ScannerView: View {
     
        //Сканер
        @State var isPresentingScanner = false
        @State var scannedCode: String = "Scan QR code to get started"
+       @State var isPresentingChoise = false
     
-        //История
-        @ObservedObject var history = History(history: ["1", "2"])
-       
+       //История
+       @ObservedObject var history = History(history: ["1", "2"])
+    
+
     
        //Сам сканер
        var scannedSheet: some View {
@@ -26,6 +32,10 @@ struct ScannerView: View {
                    if case let .success(code) = result {
                        self.scannedCode = code.string
                        self.isPresentingScanner = false
+                       if (code.string != "") {
+                           history.historyQR.append(code.string)
+                       }
+                       
                    }
                }
            )
@@ -37,32 +47,56 @@ struct ScannerView: View {
        var body: some View {
            NavigationView {
                
-               VStack(spacing: 10) {
-                   //Вверхний бар
-                   VStack {
-                       Text(scannedCode)
-                   }.padding(.vertical, 130)
-                   Spacer()
+               Form {
+                   
                    
                    
                    
                    //Бар с кнопками
-                   VStack {
-                       HStack(spacing: 13) {
+                   Section {
+                       Group {
                            
-                           //Сканирование из камеры
-                           Button("Scan QR") {
+                           //Сканирование фото
+                           Button(action: {
                                self.isPresentingScanner = true
-                           }
-                           .sheet(isPresented: $isPresentingScanner) {
-                               self.scannedSheet
+
+                           }) {
+                               HStack {
+                                   Spacer()
+                                   Image(systemName: "qrcode")
+                                   Text("Сканирование кода")
+                                   Spacer()
                                }
+                                .font(.title2)
+                                .padding(.horizontal)
+
+                           }.sheet(isPresented: $isPresentingScanner) {
+                               self.scannedSheet
+                           }.padding(15)
                            
-                           
-                           //Сканирование с фотографии
-                           Button("Select a photo") {
+                           //Выбрать фото
+                           Button(action: {
                                
-                           }
+
+                           }) {
+                               HStack {
+                                   Spacer()
+                                   Image(systemName: "photo.on.rectangle.angled")
+                                   Text("Выбрать фото")
+                                   Spacer()
+                               }
+                                .font(.title2)
+                                .padding(.horizontal)
+
+                           }.padding(15)
+                           
+                           //
+                           
+                           
+                           
+                           
+                           
+                           
 
                        }
 
@@ -78,17 +112,19 @@ struct ScannerView: View {
                                    }
                                }
                            }
-                           
-                           //Удаление всей истории QR
-                           HStack{
-                               Button("Удалить всю истроию") {
+                           HStack {
+                               Spacer()
+                               Button("Удалить все") {
                                    history.historyQR = []
-                                   
-                               }
-                               .foregroundColor(.red)
-                               
-                                   
+                               }.foregroundColor(.red)
+                               Spacer()
                            }
+                           
+                           
+                       }
+                   } else {
+                       Section(header: Text("Вы еще не сканировали QR")) {
+                           
                        }
                    }
                    

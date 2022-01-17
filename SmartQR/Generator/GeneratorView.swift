@@ -10,71 +10,6 @@ import SwiftUI
 
 
 
-//Поделитсья
-struct ShareSheet: UIViewControllerRepresentable {
-
-    let activityItems: [Any]
-    let applicationActivities: [UIActivity]?
-
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ShareSheet>) -> UIActivityViewController {
-        return UIActivityViewController(activityItems: activityItems,
-                                        applicationActivities: applicationActivities)
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController,
-                                context: UIViewControllerRepresentableContext<ShareSheet>) {
-
-    }
-}
-
-
-
-struct LastQR: View {
-
-    let QR: QR
-    
-    @State private var isShowingSharingSheet = false
-    
-    
-    var body: some View {
-        
-        VStack {
-            
-            //Имя QR
-            HStack {
-                Spacer()
-                Text("\(QR.name)")
-    
-                Spacer()
-            }.padding(.top, 10)
-                
-            
-            //Изображение самого QR
-            Image(uiImage: QR.image)
-                .interpolation(.none)
-                .resizable()
-                .scaledToFit()
-            
-            
-            //Кнопка поделиться
-            HStack {
-                Spacer()
-                Button("Поделиться") {
-                    self.isShowingSharingSheet = true
-                }.sheet(isPresented: $isShowingSharingSheet, content: {
-                    ShareSheet(activityItems: [QR.image], applicationActivities: nil)
-                })
-                    .padding(.bottom, 10)
-                Spacer()
-            
-                
-            }
-        }
-    }
-    
-}
-
-
 
 //BODY
 struct GeneratorView: View {
@@ -82,8 +17,7 @@ struct GeneratorView: View {
     @ObservedObject var history = History(history: ["1", "2", "3"])
     
     
-    
-    
+
     
     var body: some View {
         NavigationView {
@@ -94,9 +28,8 @@ struct GeneratorView: View {
                     //Последний QR
                     if history.historyQR.count > 0 {
                         
-                        VStack {
-                            LastQR(QR: StringToQR(name: history.historyQR[0]))
-                        }.navigationBarTitle("Последний QR")
+                        LastQR(QR: StringToQR(name: history.historyQR[0]))
+                            .navigationBarTitle("Последний QR")
                     } else {
                         Section {
                             //Пример
@@ -106,10 +39,47 @@ struct GeneratorView: View {
                                 .navigationBarTitle("Создание QR")
                                 .padding()
                         }
-                        
-                    //Добавление QR
      
+                    }
+                    
+                    //Создание QR
+                    Section(header: Text("Создание QR")) {
+                        Group {
                             
+                            //Создание QR из текста
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "text.alignleft")
+                                    Text("Текст")
+                                    Spacer()
+                                }
+                                    .font(.title3)
+                                    .padding(.horizontal)
+                                    .foregroundColor(.black)
+                            }
+                            
+                            
+                            //Создание QR из Фото
+                            Button(action: {
+                                
+                            }) {
+                                HStack {
+                                    Spacer()
+                                    Image(systemName: "photo")
+                                    Text("Фото")
+                                    Spacer()
+                                }
+                                 .font(.title3)
+                                 .padding(.horizontal)
+                                 .foregroundColor(.black)
+                            }
+                            
+                            
+                             
+                        }
                     }
                     
                     
@@ -123,17 +93,19 @@ struct GeneratorView: View {
                                     }
                                 }
                             }
-                            
-                            //Удаление всей истории QR
-                            HStack{
-                                Button("Удалить всю истроию") {
+                            HStack {
+                                Spacer()
+                                Button("Удалить все") {
                                     history.historyQR = []
-                                    
-                                }
-                                .foregroundColor(.red)
-                                
-                                    
+                                }.foregroundColor(.red)
+                                Spacer()
                             }
+                            
+                            
+                        }
+                    } else {
+                        Section(header: Text("Вы еще не создавали QR")) {
+                            
                         }
                     }
                     
