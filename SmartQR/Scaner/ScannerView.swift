@@ -66,7 +66,7 @@ struct ScannerView: View {
                             HStack {
                                 Spacer()
                                 Image(systemName: "qrcode")
-                                Text("Сканирование кода")
+                                Text("Сканирование")
                                 Spacer()
                             }
                             .font(.title2)
