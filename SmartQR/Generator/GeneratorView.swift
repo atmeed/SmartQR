@@ -17,6 +17,7 @@ struct GeneratorView: View {
     @ObservedObject var history = History(history: ["1", "2", "3"])
     
     
+    
 
     
     var body: some View {

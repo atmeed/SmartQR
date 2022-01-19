@@ -11,14 +11,18 @@ import SwiftUI
 //Класс с данными
 class History: ObservableObject { //Используется как в Генерации, так и в сканировании
     
-    @Published var historyQR: [String] = []
     
+    @Published var historyQR: [String] = []
+
     init(history: [String]) {
         self.historyQR = history
     }
 
     
 }
+
+
+
 
 //Строчки в Истории
 struct HistoryRow: View {

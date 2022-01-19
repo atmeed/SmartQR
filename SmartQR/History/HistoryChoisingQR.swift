@@ -29,6 +29,8 @@ struct HistoryView: View {
     let QR: QR
 
     @State private var isShowingSharingSheet = false
+    @State private var copyName = "Копировать текст"
+    @State private var copyImage = "arrowshape.turn.up.left"
     
     
     var body: some View {
@@ -69,13 +71,26 @@ struct HistoryView: View {
             Section {
                 
                 Group {
+                    
+                    //Добавить в Apple Pay
+                    Button(action: {
+                        
+                    }) {
+                        HStack {
+                            Image(systemName: "creditcard")
+                            Text("Добавить в Apple pay")
+                        }.foregroundColor(.black)
+                    }
+                    
                     //Кнопка скопировать
                     Button(action: {
                         UIPasteboard.general.string = QR.name
+                        self.copyName = "Успешно!"
+                        self.copyImage = "heart.fill"
                     }) {
                         HStack {
-                            Image(systemName: "square.and.pencil")
-                            Text("Скопировать")
+                            Image(systemName: copyImage)
+                            Text(copyName)
                         }
                     }
                     
