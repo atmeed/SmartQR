@@ -54,7 +54,7 @@ struct HistoryView: View {
                     //Кнопка поделиться
                     HStack {
                         Spacer()
-                        Button("Поделиться") {
+                        Button("Поделиться изображением") {
                             self.isShowingSharingSheet = true
                         }.sheet(isPresented: $isShowingSharingSheet, content: {
                             ShareSheet(activityItems: [QR.image], applicationActivities: nil)
@@ -71,6 +71,7 @@ struct HistoryView: View {
             Section {
                 
                 Group {
+  
                     
                     //Добавить в Apple Pay
                     Button(action: {

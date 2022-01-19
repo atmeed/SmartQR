@@ -27,7 +27,7 @@ struct GeneratorView: View {
                     //Последний QR
                     if history.historyQR.count > 0 {
                         
-                        LastQR(QR: StringToQR(name: history.historyQR[0]))
+                        LastQR(QR: StringToQR(name: history.historyQR[Int(exactly: history.historyQR.count)!-1]))
                             .navigationBarTitle("Последний QR")
                     } else {
                         Section {
@@ -48,33 +48,37 @@ struct GeneratorView: View {
                             //Создание QR из текста
                             Button(action: {
                                 
+                                
                             }) {
                                 HStack {
                                     Spacer()
-                                    Image(systemName: "text.alignleft")
+                                    Image(systemName: "text.viewfinder")
                                     Text("Текст")
                                     Spacer()
                                 }
-                                    .font(.title3)
-                                    .padding(.horizontal)
-                                    .foregroundColor(.black)
-                            }
+                                .foregroundColor(.black)
+                                .font(.title2)
+                                .padding(.horizontal)
+                                
+                            }.padding(15)
                             
                             
                             //Создание QR из Фото
                             Button(action: {
                                 
+                                
                             }) {
                                 HStack {
                                     Spacer()
-                                    Image(systemName: "photo")
+                                    Image(systemName: "photo.on.rectangle.angled")
                                     Text("Фото")
                                     Spacer()
                                 }
-                                 .font(.title3)
-                                 .padding(.horizontal)
-                                 .foregroundColor(.black)
-                            }
+                                .foregroundColor(.black)
+                                .font(.title2)
+                                .padding(.horizontal)
+                                
+                            }.padding(15)
                             
                             
                              

@@ -32,6 +32,11 @@ struct HistoryRow: View {
     var body: some View {
         HStack {
             Image(uiImage: QR.image)
+                .interpolation(.none)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                
             Text(QR.name)
             
         }
@@ -73,7 +78,7 @@ struct LastQR: View {
             //Кнопка поделиться
             HStack {
                 Spacer()
-                Button("Поделиться") {
+                Button("Поделиться изображением") {
                     self.isShowingSharingSheet = true
                 }.sheet(isPresented: $isShowingSharingSheet, content: {
                     ShareSheet(activityItems: [QR.image], applicationActivities: nil)
