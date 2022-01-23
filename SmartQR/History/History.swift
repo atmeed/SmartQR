@@ -11,25 +11,9 @@ import SwiftUI
 //Класс с данными
 class History: ObservableObject { //Используется как в Генерации, так и в сканировании
     
-    
-    @Published var historyQR: [String] = []
 
-    init(history: [String]) {
-        self.historyQR = history
-    }
-    
-    
-    //Удаление определенного элемента
-    func delItem(name: String) {
-        var count: Int = 0
-        for item in historyQR {
-            if item == name {
-                historyQR.remove(at: count)
-            }
-            count += 1
-        }
-    }
-    
+    @Published var historyScaner: [String] = ["1", "2"]
+    @Published var historyGenerator: [String] = ["1", "2", "3"]
 
     
 }
@@ -126,7 +110,6 @@ struct ShareSheet: UIViewControllerRepresentable {
 //Просмотр старого QR
 struct HistoryView: View {
     let QR: QR
-    
     
     
     

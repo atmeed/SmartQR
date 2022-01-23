@@ -20,7 +20,7 @@ struct ScannerView: View {
     @State var isPresentingChoise = false
     
     //История
-    @ObservedObject var history = History(history: ["1", "2"])
+    @ObservedObject var history = History()
     
     
     
@@ -35,7 +35,7 @@ struct ScannerView: View {
                     self.scannedCode = code.string
                     self.isPresentingScanner = false
                     if (code.string != "") {
-                        history.historyQR.append(code.string)
+                        history.historyScaner.append(code.string)
                     }
                     
                 }
@@ -103,10 +103,10 @@ struct ScannerView: View {
                 }
                 
                 //История сканирования QR
-                if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
+                if history.historyScaner.count > 0 { //Удаление истории приводит к удалению всего View
                     Section(header: Text("История")) {
                         List {
-                            ForEach(history.historyQR.reversed(), id: \.self) { qr in
+                            ForEach(history.historyScaner.reversed(), id: \.self) { qr in
                                 NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
                                     HistoryRow(QR: StringToQR(name: qr))
                                 }
@@ -115,7 +115,7 @@ struct ScannerView: View {
                         HStack {
                             Spacer()
                             Button("Удалить все") {
-                                history.historyQR = []
+                                history.historyScaner = []
                             }.foregroundColor(.red)
                             Spacer()
                         }

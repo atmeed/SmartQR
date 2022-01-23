@@ -14,7 +14,7 @@ import SwiftUI
 //BODY
 struct GeneratorView: View {
     
-    @ObservedObject var history = History(history: ["1", "2", "3"])
+    @ObservedObject var history = History()
     
     
     
@@ -25,9 +25,9 @@ struct GeneratorView: View {
             VStack {
                 Form {
                     //Последний QR
-                    if history.historyQR.count > 0 {
+                    if history.historyGenerator.count > 0 {
                         
-                        LastQR(QR: StringToQR(name: history.historyQR[Int(exactly: history.historyQR.count)!-1]))
+                        LastQR(QR: StringToQR(name: history.historyGenerator[Int(exactly: history.historyGenerator.count)!-1]))
                             .navigationBarTitle("Последний QR")
                     } else {
                         Section {
@@ -87,10 +87,10 @@ struct GeneratorView: View {
                     
                     
                     //История создания QR
-                    if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
+                    if history.historyGenerator.count > 0 { //Удаление истории приводит к удалению всего View
                         Section(header: Text("История")) {
                             List {
-                                ForEach(history.historyQR.reversed(), id: \.self) { qr in
+                                ForEach(history.historyGenerator.reversed(), id: \.self) { qr in
                                     NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
                                         HistoryRow(QR: StringToQR(name: qr))
                                     }
@@ -99,7 +99,7 @@ struct GeneratorView: View {
                             HStack {
                                 Spacer()
                                 Button("Удалить все") {
-                                    history.historyQR = []
+                                    history.historyGenerator = []
                                 }.foregroundColor(.red)
                                 Spacer()
                             }
