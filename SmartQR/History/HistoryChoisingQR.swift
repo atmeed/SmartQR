@@ -27,10 +27,33 @@ struct ShareSheet: UIViewControllerRepresentable {
 
 struct HistoryView: View {
     let QR: QR
-
+    
+    @ObservedObject var history = History(history: [])
+    
+    
+    
+    //Кнопка поделится
     @State private var isShowingSharingSheet = false
+    
+    //Работа кнопки скопировать
     @State private var copyName = "Копировать текст"
     @State private var copyImage = "arrowshape.turn.up.left"
+    
+    //Закрытие окна при удалении
+    @Environment(\.dismiss) private var dismiss
+    
+    //Открытие ссылки
+    @Environment(\.openURL) var openURL
+    
+    func verifyUrl (urlString: String?) -> Bool {
+        if let urlString = urlString {
+            if let url = NSURL(string: urlString) {
+                return UIApplication.shared.canOpenURL(url as URL)
+            }
+        }
+        return false
+    }
+    
     
     
     var body: some View {
@@ -67,22 +90,28 @@ struct HistoryView: View {
                 
             }
             
+            
+            
+            
+            
             //Функциональные кнопки
             Section {
                 
                 Group {
-  
                     
-                    //Добавить в Apple Pay
-                    Button(action: {
-                        
-                    }) {
-                        HStack {
-                            Image(systemName: "creditcard")
-                            Text("Добавить в Apple pay")
-                        }.foregroundColor(.black)
+                    //Проверка на ссылку
+                    if verifyUrl(urlString: QR.name) {
+                        Button(action: {
+                            openURL(URL(string: QR.name)!)
+                        }) {
+                            HStack {
+                                Image(systemName: "link")
+                                Text("Открыть ссылку")
+                            }
+                        }
                     }
                     
+                
                     //Кнопка скопировать
                     Button(action: {
                         UIPasteboard.general.string = QR.name
@@ -90,13 +119,38 @@ struct HistoryView: View {
                         self.copyImage = "heart.fill"
                     }) {
                         HStack {
+                            
                             Image(systemName: copyImage)
-                            Text(copyName)
+                            if verifyUrl(urlString: QR.name) {
+                                Text("Скопировать ссылку")
+                            } else {
+                                Text(copyName)
+                            }
+                            
                         }
                     }
                     
+                    //Добавить в Apple Pay
+                    Button(action: {
+                        history.delItem(name: QR.name)
+                    }) {
+                        HStack {
+                            Image(systemName: "creditcard")
+                            Text("Добавить в Apple pay")
+                        }.foregroundColor(.black)
+                    }
+                    
+                    
+                    
+                }
+                
+
+            }
+            Section {
+                Group {
                     //Кнопка удалить данный QR
                     Button(action: {
+                        dismiss()
                         
                     }) {
                         HStack {
@@ -105,7 +159,6 @@ struct HistoryView: View {
                         }.foregroundColor(.red)
                     }
                 }
-
             }
             
             

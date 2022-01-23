@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A524C7C02795FEE30086881B /* HistoryChoisingQR.swift in Sources */ = {isa = PBXBuildFile; fileRef = A524C7BF2795FEE30086881B /* HistoryChoisingQR.swift */; };
 		A5362B0627907467007531B2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = A5362B0527907467007531B2 /* CodeScanner */; };
 		A589DBCB27955C7500A69743 /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = A589DBCA27955C7500A69743 /* History.swift */; };
 		A5CF8CA62792AC4C003C04E4 /* GeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CF8CA52792AC4C003C04E4 /* GeneratorView.swift */; };
@@ -20,7 +19,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A524C7BF2795FEE30086881B /* HistoryChoisingQR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChoisingQR.swift; sourceTree = "<group>"; };
 		A5362B0327907408007531B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A589DBCA27955C7500A69743 /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		A5CF8CA52792AC4C003C04E4 /* GeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneratorView.swift; sourceTree = "<group>"; };
@@ -66,7 +64,6 @@
 			isa = PBXGroup;
 			children = (
 				A589DBCA27955C7500A69743 /* History.swift */,
-				A524C7BF2795FEE30086881B /* HistoryChoisingQR.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -188,7 +185,6 @@
 			files = (
 				A5D94B8E278F10F900E94026 /* ContentView.swift in Sources */,
 				A5D94B9A278F115C00E94026 /* GeneratorQR.swift in Sources */,
-				A524C7C02795FEE30086881B /* HistoryChoisingQR.swift in Sources */,
 				A589DBCB27955C7500A69743 /* History.swift in Sources */,
 				A5D94B8C278F10F900E94026 /* SmartQRApp.swift in Sources */,
 				A5D94B9C278F11A100E94026 /* ScannerView.swift in Sources */,

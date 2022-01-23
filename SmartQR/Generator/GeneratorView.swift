@@ -90,7 +90,7 @@ struct GeneratorView: View {
                     if history.historyQR.count > 0 { //Удаление истории приводит к удалению всего View
                         Section(header: Text("История")) {
                             List {
-                                ForEach(history.historyQR, id: \.self) { qr in
+                                ForEach(history.historyQR.reversed(), id: \.self) { qr in
                                     NavigationLink(destination: HistoryView(QR: StringToQR(name: qr))) {
                                         HistoryRow(QR: StringToQR(name: qr))
                                     }
